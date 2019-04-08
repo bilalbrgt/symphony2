@@ -17,19 +17,24 @@ class Article
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=64)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=true)
+     * @ORM\Column(type="text")
      */
-    private $image;
+    private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
-    private $imalgesAlt;
+    private $imageSrc;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $imageAlt;
 
     /**
      * @ORM\Column(type="datetime")
@@ -37,17 +42,17 @@ class Article
     private $createdAt;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
     private $isPublished;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $nbViews;
 
@@ -68,26 +73,38 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getDescription(): ?string
     {
-        return $this->image;
+        return $this->description;
     }
 
-    public function setImage(?string $image): self
+    public function setDescription(string $description): self
     {
-        $this->image = $image;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getImalgesAlt(): ?string
+    public function getImageSrc(): ?string
     {
-        return $this->imalgesAlt;
+        return $this->imageSrc;
     }
 
-    public function setImalgesAlt(string $imalgesAlt): self
+    public function setImageSrc(?string $imageSrc): self
     {
-        $this->imalgesAlt = $imalgesAlt;
+        $this->imageSrc = $imageSrc;
+
+        return $this;
+    }
+
+    public function getImageAlt(): ?string
+    {
+        return $this->imageAlt;
+    }
+
+    public function setImageAlt(?string $imageAlt): self
+    {
+        $this->imageAlt = $imageAlt;
 
         return $this;
     }
@@ -104,39 +121,41 @@ class Article
         return $this;
     }
 
-    public function getUpdatedAt(): ?bool
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(bool $updatedAt): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getIsPublished(): ?int
+    public function getIsPublished(): ?bool
     {
         return $this->isPublished;
     }
 
-    public function setIsPublished(int $isPublished): self
+    public function setIsPublished(bool $isPublished): self
     {
         $this->isPublished = $isPublished;
 
         return $this;
     }
 
-    public function getNbViews(): ?string
+    public function getNbViews(): ?int
     {
         return $this->nbViews;
     }
 
-    public function setNbViews(string $nbViews): self
+    public function setNbViews(int $nbViews): self
     {
         $this->nbViews = $nbViews;
 
         return $this;
     }
 }
+
+
